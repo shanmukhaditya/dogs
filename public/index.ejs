@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+	<style>
+		.zoom {
+			transition: transform .2s;
+			/* Animation */
+			width: 200px;
+			height: 200px;
+			margin: 0 auto;
+		}
+
+		.zoom:hover {
+			transform: scale(1.25);
+			/* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+		}
+	</style>
+	<title>Lots of dogs! 🐕</title>
+</head>
+
+<body>
+	<h1>
+		<a href='/' style="text-decoration: none; color: black;">
+			Lots of dogs! 🐕
+		</a>
+	</h1>
+	<p>See photos of your favorite dogs</p>
+	<form>
+		<!-- <input type="text" name="breed" placeholder="Enter a dog breed"> -->
+		<select class="dog-selector" name="breed" id="breed" value="<%=breed%> ">
+			<option value="" disabled selected hidden>Select breed..</option>
+			<% for(var item of Object.keys(dropdown)) {%>
+				<option value="<%=item%>" <%=item===breed ? 'selected' : '' %> ><%=dropdown[item]%>
+				</option>
+				<% } %>
+		</select>
+		<input type="submit" value="Fetch" />
+	</form>
+	<% if (breed) {if(images.length){ %>
+		<div>
+			<hr>
+		</div>
+		<div class="multiple-images">
+			<% for(var img of images) {%>
+				<img class="zoom" src="<%=img%>" style="width:250px;height:250px;">
+				<% } %>
+		</div>
+		<% } else if(requestStatus){ %>
+			<hr>
+			<div>
+				<%=message%>
+			</div>
+			<% } }%>
+				<button class="back-to-top"
+					style="position: fixed; right:2rem; bottom:2rem; display: none; padding: 0.5rem;">
+					<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48">
+						<path d="M22.5 40V13.7L10.1 26.1 8 24 24 8l16 16-2.1 2.1-12.4-12.4V40Z" />
+					</svg>
+				</button>
+
+				<script>
+					const showOnPx = 100;
+					const backToTopButton = document.querySelector(".back-to-top")
+
+					const scrollContainer = () => {
+						return document.documentElement || document.body;
+					};
+
+					const goToTop = () => {
+						document.body.scrollIntoView({ behavior: "smooth" });
+					};
+
+					backToTopButton.addEventListener("click", goToTop);
+
+					document.addEventListener("scroll", () => {
+						if (scrollContainer().scrollTop > showOnPx) {
+							backToTopButton.style.display = null;
+						} else {
+							backToTopButton.style.display = 'none';
+						}
+					})
+				</script>
+</body>
+
+</html>
