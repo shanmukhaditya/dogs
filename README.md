@@ -40,7 +40,7 @@ To test the functionality, run
 npm run test
 ```
 
-##UI
+## UI
 
 ![alt text](./imgs/dogs.jpg?raw=true)
 
