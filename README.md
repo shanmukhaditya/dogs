@@ -40,6 +40,10 @@ To test the functionality, run
 npm run test
 ```
 
+##UI
+
+![alt text](./imgs/dogs.jpg?raw=true)
+
 ## Documentation
 
 - Koa: https://koajs.com/
